@@ -1,0 +1,162 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: din-round,sans-serif;
+    }
+    
+:root {
+  --blue-eclipse-darkest: #0F0E47;
+  --blue-eclipse-dark: #272757;
+  --blue-eclipse-medium: #505081;
+  --blue-eclipse-light: #8686AC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: white;
+  color: white;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--blue-eclipse-dark);
+  color: white;
+}
+
+.logo a{
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.language-select {
+  position: relative;
+  display: inline-block;
+}
+
+.language-btn {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: var(--blue-eclipse-light);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  padding: 20px;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left img {
+  width: 300px;
+  max-width: 90%;
+}
+
+.right {
+  flex: 1;
+  text-align: center;
+}
+
+.right h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--blue-eclipse-darkest);
+}
+
+.right a{
+    text-decoration: none;
+}
+
+.btn {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--blue-eclipse-darkest);
+}
+
+.btn-register {
+  background-color: var(--blue-eclipse-medium);
+  color: white;
+}
+
+.btn-login {
+  background-color: white;
+  color: var(--blue-eclipse-darkest);
+  border: 2px solid var(--blue-eclipse-medium);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.footer{
+    background-color: var(--blue-eclipse-dark);
+    color: white;
+    text-align: center;
+}
+
+.auth-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.auth-buttons .btn {
+  flex: 1;
+  margin: 0 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input{
+  margin: 10px 0;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: var(--blue-eclipse-darkest);
+}
+
+
+.containerlog {
+  background-color: var(--blue-eclipse-dark);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  text-align: center;
+  width: 300px;
+}
+
+.containerlog a{
+
+    color: white;
+}
