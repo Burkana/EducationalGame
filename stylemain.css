@@ -1,0 +1,66 @@
+:root {
+      --blue-eclipse-darkest: #0F0E47;
+      --blue-eclipse-dark: #272757;
+      --blue-eclipse-medium: #505081;
+      --blue-eclipse-light: #8686AC;
+
+      --primary-color: var(--blue-eclipse-darkest);
+      --main-bg-color: var(--blue-eclipse-dark);
+      --hover-color: var(--blue-eclipse-medium);
+      --active-border-color: var(--blue-eclipse-light);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: white;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 100vh;
+      background-color: var(--main-bg-color);
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .logo {
+      color: var(--blue-eclipse-light);
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s, border-left 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: var(--hover-color);
+    }
+
+    .menu-item.active {
+      background-color: var(--hover-color);
+      border-left: 4px solid var(--active-border-color);
+    }
+
+
+    .menu-item img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-text {
+      font-weight: bold;
+    }
