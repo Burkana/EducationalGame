@@ -15,19 +15,21 @@
   <div class="container">
     <div class="containerlog">
       <h2>Регистрация</h2>
-    <form class="form">
-      <input type="text" placeholder="Име" required />
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Парола" required />
-      <button type="submit" class="btn">Регистрирай се</button>
-    </form>
+<form class="form" method="POST" action="http://localhost:3000/register">
+  <input type="text" name="names" placeholder="Име" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <input type="password" name="passwords" placeholder="Парола" required />
+  <button type="submit" class="btn">Регистрирай се</button>
+</form>
+
     <p>Вече имаш профил! <br> <a href="login.html"> Влез от тук</a>.</p>
     </div>
   </div>
 
   <div class="footer">
-    <p>&copy;Направено от Камен и Георги най-добрите програмисти ;)</p>
+    <p>&copy;Направено от Камен и Георги най-добрите програмисти</p>
   </div>
 
 </body>
 </html>
+

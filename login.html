@@ -14,16 +14,16 @@
     <div class="container">
         <div class="containerlog">
             <h2>Вход</h2>
-        <form class="form">
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Парола" required />
-        <button type="submit" class="btn">Влез</button>
+        <form class="form" method="POST" action="http://localhost:3000/login">
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="passwords" placeholder="Парола" required />
+          <button type="submit" class="btn">Влез</button>
         </form>
         <p>Нямаш профил? <a href="register.html">Регистрирай се тук</a>.</p>
         </div>
     </div>
   <div class="footer">
-    <p>&copy;Направено от Камен и Георги най-добрите програмисти ;)</p>
+    <p>&copy;Направено от Камен и Георги най-добрите програмисти </p>
   </div>
 
 </body>
