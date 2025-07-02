@@ -1,82 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CodeBusters</title>
-  
-<link rel="stylesheet" href="stylemain.css">
-
-
-
+  <link rel="stylesheet" href="stylemain.css" />
 </head>
 <body>
 
-  <div class="sidebar">
-    <div class="logo">CodeBusters</div>
+<div class="sidebar">
+  <div class="logo">CodeBusters</div>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/emoji/48/home-emoji.png" alt="Learn">
-      <span class="menu-text">LEARN</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/emoji/48/home-emoji.png" alt="Learn" />
+    <span class="menu-text">LEARN</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/ios-filled/50/letters.png" alt="Letters">
-      <span class="menu-text">LETTERS</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/ios-filled/50/letters.png" alt="Letters" />
+    <span class="menu-text">LETTERS</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/color/48/shield.png" alt="Leaderboards">
-      <span class="menu-text">LEADERBOARDS</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/color/48/shield.png" alt="Leaderboards" />
+    <span class="menu-text">LEADERBOARDS</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/color/48/treasure-chest.png" alt="Quests">
-      <span class="menu-text">QUESTS</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/color/48/treasure-chest.png" alt="Quests" />
+    <span class="menu-text">QUESTS</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/color/48/shop.png" alt="Shop">
-      <span class="menu-text">SHOP</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/color/48/shop.png" alt="Shop" />
+    <span class="menu-text">SHOP</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/3d-fluency/50/user.png" alt="Profile">
-      <span class="menu-text">PROFILE</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/3d-fluency/50/user.png" alt="Profile" />
+    <span class="menu-text">PROFILE</span>
+  </a>
 
-    <a class="menu-item" id="menu-item" href="#">
-      <img src="https://img.icons8.com/emoji/48/purple-circle-emoji.png" alt="More">
-      <span class="menu-text">MORE</span>
-    </a>
+  <a class="menu-item" href="#">
+    <img src="https://img.icons8.com/emoji/48/purple-circle-emoji.png" alt="More" />
+    <span class="menu-text">MORE</span>
+  </a>
+</div>
 
-    
-<script>
-    // Зареждане на последния активен бутон
-    const savedId = localStorage.getItem('activeMenu');
-    if (savedId) {
-      const savedItem = document.querySelector(`.menu-item[data-id="${savedId}"]`);
-      if (savedItem) savedItem.classList.add('active');
-    } else {
-      // Ако няма запазен, задаваме първия като активен
-      document.querySelector('.menu-item').classList.add('active');
-    }
+<div id="profile"></div>
+<button id="logoutBtn">Log Out</button>
 
-    // Обработка на кликове
-    document.querySelectorAll('.menu-item').forEach(item => {
-      item.addEventListener('click', function () {
-        // Премахваме active от всички
-        document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
-        // Слагаме active на текущия
-        this.classList.add('active');
-        // Запазваме в localStorage
-        localStorage.setItem('activeMenu', this.dataset.id);
-      });
-    });
-  </script>
-
-  </div>
-
-
+<script src="sciripmainlogin.js"></script>
 
 </body>
 </html>
