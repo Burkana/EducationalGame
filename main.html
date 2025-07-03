@@ -4,53 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CodeBusters</title>
-  <link rel="stylesheet" href="stylemain.css" />
+  <link rel="stylesheet" href="stylemain.css"/>
 </head>
 <body>
 
-<div class="sidebar">
-  <div class="logo">CodeBusters</div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/emoji/48/home-emoji.png" alt="Learn" />
-    <span class="menu-text">LEARN</span>
-  </a>
+ <div class="sidebar">
+    <div class="logo"><a class="text-logo" href="asdasd">CodeBusters</a></div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/ios-filled/50/letters.png" alt="Letters" />
-    <span class="menu-text">LETTERS</span>
-  </a>
+    <div class="menu-item" data-id="learn">
+      <img src="https://img.icons8.com/emoji/48/home-emoji.png">
+      <span class="menu-text">Играй</span>
+    </div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/color/48/shield.png" alt="Leaderboards" />
-    <span class="menu-text">LEADERBOARDS</span>
-  </a>
+    <div class="menu-item" data-id="letters">
+      <img src="https://img.icons8.com/ios-filled/50/letters.png">
+      <span class="menu-text">Писма</span>
+    </div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/color/48/treasure-chest.png" alt="Quests" />
-    <span class="menu-text">QUESTS</span>
-  </a>
+    <div class="menu-item" data-id="profile">
+      <img src="https://img.icons8.com/3d-fluency/50/user.png">
+      <span class="menu-text">Профил</span>
+    </div>
+  </div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/color/48/shop.png" alt="Shop" />
-    <span class="menu-text">SHOP</span>
-  </a>
+  <div class="content-area">
+    <div class="tab-content" data-id="learn">
+  <div id="levels" class="screen">
+  <h2>Избери ниво:</h2>
+  <div class="level-buttons">
+    <button onclick="startLevel(1)">1 </button>
+    <button onclick="startLevel(2)">2 </button>
+    <button onclick="startLevel(3)">3 </button>
+    <button onclick="startLevel(4)">4 </button>
+    <button onclick="startLevel(5)">5 </button>
+    <button onclick="startLevel(6)">6 </button>
+    <button onclick="startLevel(7)">7 </button>
+    <button onclick="startLevel(8)">8 </button>
+    <button onclick="startLevel(9)">9 </button>
+    <button onclick="startLevel(10)">10</button>
+    </div>
+    </div>
+    </div>
 
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/3d-fluency/50/user.png" alt="Profile" />
-    <span class="menu-text">PROFILE</span>
-  </a>
-
-  <a class="menu-item" href="#">
-    <img src="https://img.icons8.com/emoji/48/purple-circle-emoji.png" alt="More" />
-    <span class="menu-text">MORE</span>
-  </a>
+    <div class="tab-content" data-id="letters">
+      <h1>Писма</h1>
+      <p>Тук са буквите и писането.</p>
+    </div>
+    <div class="tab-content" data-id="profile">
+      <h1>Профил</h1>
+      <p>Информация за потребителя и настройки.</p>
+      <div id="profile"></div>
+      <button id="logoutBtn" class="btn">Изход</button>
+    </div>
+  </div>
 </div>
 
-<div id="profile"></div>
-<button id="logoutBtn">Log Out</button>
 
 <script src="sciripmainlogin.js"></script>
+<script src="scriptmainmenu.js"></script>
 
 </body>
 </html>

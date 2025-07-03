@@ -12,20 +12,22 @@
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
+      font-family: Arial, sans-serif;
       background-color: white;
+      color: white;
+      display: flex;
     }
 
     .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
       width: 200px;
       height: 100vh;
-      background-color: var(--main-bg-color);
+      background-color: var(--blue-eclipse-dark);
       display: flex;
       flex-direction: column;
       padding-top: 20px;
+      position: fixed;
+      left: 0;
+      top: 0;
     }
 
     .logo {
@@ -36,6 +38,11 @@
       margin-bottom: 30px;
     }
 
+    .text-logo{
+      text-decoration: none;
+      color: var(--blue-eclipse-light);
+    }
+
     .menu-item {
       display: flex;
       align-items: center;
@@ -43,6 +50,8 @@
       color: white;
       text-decoration: none;
       transition: background 0.3s, border-left 0.3s;
+      box-sizing: border-box;
+      cursor: pointer;
     }
 
     .menu-item:hover {
@@ -54,7 +63,6 @@
       border-left: 4px solid var(--active-border-color);
     }
 
-
     .menu-item img {
       width: 20px;
       height: 20px;
@@ -64,3 +72,58 @@
     .menu-text {
       font-weight: bold;
     }
+
+    .content-area {
+      margin-left: 200px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .tab-content {
+      color: var(--blue-eclipse-darkest);
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .btn {
+      display: block;
+      width: 200px;
+      margin-top: 15px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      background-color: var(--blue-eclipse-medium);
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .level-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.level-buttons button {
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  background-color: var(--blue-eclipse-medium);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.level-buttons button:hover {
+  background-color: var(--blue-eclipse-light);
+}

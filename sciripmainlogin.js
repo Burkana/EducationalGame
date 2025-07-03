@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   .then(res => res.ok ? res.json() : Promise.reject())
   .then(user => {
     document.getElementById('profile').innerText =
-      `Welcome, ${user.names} (${user.email})`;
+      `Добре дошли, ${user.names} (${user.email})`;
   })
   .catch(() => {
     window.location.href = "http://127.0.0.1:5500/login.html";
