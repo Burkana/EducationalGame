@@ -40,7 +40,9 @@
 
     .text-logo{
       text-decoration: none;
-      color: var(--blue-eclipse-light);
+      color: white;
+      font-size: larger;
+
     }
 
     .menu-item {
@@ -100,6 +102,10 @@
       cursor: pointer;
       color: white;
       background-color: var(--blue-eclipse-medium);
+    }
+
+    a{
+      text-decoration: none;
     }
     .btn:hover {
       opacity: 0.9;

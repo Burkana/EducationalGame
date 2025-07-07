@@ -57,7 +57,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 110px);
   padding: 20px;
 }
 
@@ -120,6 +120,7 @@ header {
     background-color: var(--blue-eclipse-dark);
     color: white;
     text-align: center;
+    padding: 10px 25px;
 }
 
 .auth-buttons {

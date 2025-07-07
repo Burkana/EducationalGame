@@ -1,0 +1,141 @@
+    :root {
+      --blue-eclipse-darkest: #0F0E47;
+      --blue-eclipse-dark:    #272757;
+      --blue-eclipse-medium:  #505081;
+      --blue-eclipse-light:   #8686AC;
+
+      --primary-color:        var(--blue-eclipse-darkest);
+      --main-bg-color:        var(--blue-eclipse-dark);
+      --hover-color:          var(--blue-eclipse-medium);
+      --active-border-color:  var(--blue-eclipse-light);
+
+      --header-bg:            var(--blue-eclipse-dark);
+      --footer-bg:            var(--blue-eclipse-dark);
+      --panel-bg:             var(--blue-eclipse-dark);
+      --panel-text:           #ffffff;
+      --button-bg:            var(--blue-eclipse-medium);
+      --button-text:          #ffffff;
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-sizing:border-box;
+    }
+
+    body {
+      font-family:"Segoe UI",sans-serif;
+      background:#ffffff;               
+      color:#ffffff;                     
+      transition:background .3s,color .3s;
+    }
+
+    h1 {
+        margin:0;
+    }
+
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: var(--blue-eclipse-dark);
+        color: white;
+    }
+
+    footer {
+      background:var(--footer-bg);
+      text-align:center;
+      color:#fff;
+      padding: 10px 25px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 115px);
+        padding: 20px;
+    }
+    
+    #container{
+    
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:1rem;
+        
+    }
+    @media(max-width:900px){#container{grid-template-columns:1fr}}
+
+
+    #instructions,#playground{
+      background:var(--panel-bg);
+      color:white;
+      padding:1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    #codeWrapper{
+      background:rgba(0,0,0,0.1);
+      border:1px solid var(--active-border-color);
+      border-radius:8px;
+      padding:0.5rem 1rem;
+      font-family:'Fira Code',monospace;
+      font-size:0.9rem;
+      overflow-x:auto;
+    }
+
+    .codeLine{
+        white-space:pre;
+        margin:0;
+        color:white;
+    }
+
+    #codeInput{
+      display:block;width:100%;border:none;background:transparent;
+      color:#fff;outline:none;font-family:'Fira Code',monospace;font-size:0.9rem;padding:0;
+    }
+    #codeInput::placeholder{color:rgba(255,255,255,0.6)}
+
+    #runBtn{
+      margin-top:0.8rem;padding:0.7rem 1.4rem;
+      background:var(--button-bg);color:var(--button-text);
+      border:none;border-radius:8px;font-weight:bold;cursor:pointer;
+      transition:background .2s;
+    }
+    #runBtn:hover{background:var(--hover-color)}
+
+    #outputWindow{
+      margin-top:1rem;
+      background:rgba(0,0,0,0.15);
+      border:1px solid var(--active-border-color);
+      border-radius:8px;
+      padding:1rem;min-height:110px;white-space:pre-wrap;color:#fff;
+    }
+    .success{color:#3fb950}
+    .error{color:#f85149}
+
+    #levelButtons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+#levelButtons button {
+  padding: 0.6rem 1.2rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#levelButtons button:hover {
+  background: var(--hover-color);
+}

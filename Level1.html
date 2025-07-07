@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeBusters C++ – Ниво 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <link rel="stylesheet" href="stylelevels.css"/>
+</head>
+<body>
+
+
+<header>
+  <h1>CodeBusters C++ – Ниво 1: Здравей, изход</h1>
+</header>
+
+<main>
+  <div id="container">
+    <!--  Instructions  -->
+    <div id="instructions">
+      <h2>Мисия</h2>
+      <p>
+        Довършете едноредовата инструкция <code>cout</code> между <em>main()</em> и <code>return&nbsp;0;</code>.<br>
+        Тя трябва да изведе точно <strong>Hello, C++ World!</strong> и да завършва с точка и запетая.
+      </p>
+      <p><code>#include &lt;iostream&gt;</code> и <code>using namespace std;</code> вече са добавени; можете да редактирате само този един ред.</p>
+    </div>
+
+    <!--  Playground  -->
+    <div id="playground">
+      <div id="codeWrapper">
+        <pre class="codeLine">#include &lt;iostream&gt;</pre>
+        <pre class="codeLine">using namespace std;</pre>
+        <pre class="codeLine">int main() {</pre>
+        <input type="text" id="codeInput" placeholder="    cout &lt;&lt; \"Hello, C++ World!\";" autocomplete="off" spellcheck="false" />
+        <pre class="codeLine">    return 0;</pre>
+        <pre class="codeLine">}</pre>
+      </div>
+      <button id="runBtn">Стартирай кода</button>
+      <div id="outputWindow"></div>
+      <div id="levelButtons">
+  <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
+  <a href="main.html"><button id="menuBtn">Меню</button></a>
+</div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; Направено от Камен и Георги – най‑добрите програмисти
+</footer>
+
+<script>
+(() => {
+  const input = document.getElementById('codeInput');
+  const btn = document.getElementById('runBtn');
+  const out = document.getElementById('outputWindow');
+
+  // Забраняваме нови редове и стартираме с Enter
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); btn.click(); }
+  });
+
+  function check(line) {
+    const pattern = /^\s*cout\s*<<\s*"Hello,\s*C\+\+\s*World!"\s*;\s*$/;
+    if (pattern.test(line)) return { ok: true };
+
+    if (!/^\s*cout/.test(line)) return { ok: false, msg: 'Редът трябва да започва с cout' };
+    if (!/;\s*$/.test(line)) return { ok: false, msg: 'Не забравяйте точката и запетая в края' };
+    if (!/Hello,\s*C\+\+\s*World!/.test(line)) return { ok: false, msg: 'Текстът на изхода трябва точно да съвпада с "Hello, C++ World!"' };
+    return { ok: false, msg: 'Проверете интервалите/форматирането и дали няма допълнителен код.' };
+  }
+
+  btn.addEventListener('click', () => {
+  const res = check(input.value.trim());
+  out.innerHTML = '';
+  const nextBtn = document.getElementById('nextLevelBtn');
+
+    if (res.ok) {
+    out.innerHTML = '<span class="success">Hello, C++ World!</span>\n\n✅ Нивото е преминато!';
+    nextBtn.style.display = 'inline-block'; // Show next level button
+  } else {
+    out.innerHTML = '<span class="error">⛔ ' + res.msg + '</span>';
+    nextBtn.style.display = 'none'; // Hide next level button again
+  }
+  });
+})();
+
+</script>
+</body>
+</html>
