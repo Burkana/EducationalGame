@@ -19,10 +19,12 @@
     <div id="instructions">
       <h2>Мисия</h2>
       <p>
-        Довършете едноредовата инструкция <code>cout</code> между <em>main()</em> и <code>return&nbsp;0;</code>.<br>
-        Тя трябва да изведе точно <strong>Hello, C++ World!</strong> и да завършва с точка и запетая.
+        Довършете едноредовата инструкция <strong>cout<<</strong> между <strong>main()</strong> и <strong>return 0;</strong>.<br>
+        Тя трябва да изведе точно <strong>Hello, C++ World!</strong> и да завършва с точка и запетая.<br>
+        За да изведете текста в командата той трябва да е в кавички <strong>" "</strong> <br> 
+        и след тях да завършите с точка и запетая <strong>;</strong>  
+
       </p>
-      <p><code>#include &lt;iostream&gt;</code> и <code>using namespace std;</code> вече са добавени; можете да редактирате само този един ред.</p>
     </div>
 
    
@@ -31,7 +33,7 @@
         <pre class="codeLine">#include &lt;iostream&gt;</pre>
         <pre class="codeLine">using namespace std;</pre>
         <pre class="codeLine">int main() {</pre>
-        <input type="text" id="codeInput" placeholder="    cout &lt;&lt; \"Hello, C++ World!\";" autocomplete="off" spellcheck="false" />
+        <input type="text" id="codeInput" class="codeInput" placeholder="cout<< <– Пишете тук –>" autocomplete="off" spellcheck="false" />
         <pre class="codeLine">    return 0;</pre>
         <pre class="codeLine">}</pre>
       </div>
@@ -70,7 +72,7 @@ nextBtn.addEventListener('click', () => {
     const pattern = /^\s*cout\s*<<\s*"Hello,\s*C\+\+\s*World!"\s*;\s*$/;
     if (pattern.test(line)) return { ok: true };
 
-    if (!/^\s*cout/.test(line)) return { ok: false, msg: 'Редът трябва да започва с cout' };
+    if (!/^\s*cout/.test(line)) return { ok: false, msg: 'Редът трябва да започва с cout<<' };
     if (!/;\s*$/.test(line)) return { ok: false, msg: 'Не забравяйте точката и запетая в края' };
     if (!/Hello,\s*C\+\+\s*World!/.test(line)) return { ok: false, msg: 'Текстът на изхода трябва точно да съвпада с "Hello, C++ World!"' };
     return { ok: false, msg: 'Проверете интервалите/форматирането и дали няма допълнителен код.' };
