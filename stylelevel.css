@@ -38,19 +38,18 @@ header {
   color: white;
 }
   
-footer {
+.footer {
   background:var(--blue-eclipse-dark);
   text-align:center;
   color:white;
   padding: 10px 25px;
-  width: 100%;
-  margin-top: auto;
 }
 
 main{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   height: calc(100vh - 100px);
   padding: 20px;
 }
@@ -138,7 +137,7 @@ main{
 }
 
 #levelButtons button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.0rem;
   background: var(--blue-eclipse-medium);
   color: white;
   border: none;
@@ -179,4 +178,13 @@ main{
     #container{
       grid-template-columns:1fr;
     }
+
+    main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: calc(140vh - 10px);
+    padding: 20px;
+}
 }

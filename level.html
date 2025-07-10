@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title id="title">
+    <!-- Title is dynamic -->
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="stylelevel.css" />
+</head>
+<body>
+<header>
+  <h1 id="headerTitle"> 
+    <!-- Header is dynamic -->
+  </h1>
+</header>
+
+<main>
+  <div id="container">
+
+    <div id="instructions">
+      <!-- Instructions content will be updated dynamically -->
+    </div>
+
+    <div id="playground">
+      <div id="codeWrapper">
+        <!-- Code area inputs will be updated dynamically -->
+      </div>
+
+      <button id="runBtn">Стартирай кода</button>
+
+      <div id="nameInputWrapper" style="display:none; margin-top: 1rem;">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Въведете име..."
+          autocomplete="off"
+          spellcheck="false"
+          style="padding:0.5rem;border-radius:6px;width:100%;"
+        />
+        <button id="sayHelloBtn" style="margin-top:0.5rem;">Изведи поздрав</button>
+      </div>
+
+      <div id="outputWindow"></div>
+
+      <div id="levelButtons">
+        <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
+        <button id="prevLevelBtn" style="display: block;">Предишно ниво</button>
+        <a href="main.html"><button id="menuBtn">Меню</button></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+  <div class="footer">
+    <p>&copy;Направено от Камен и Георги най-добрите програмисти</p>
+  </div>
+
+<script src="scriptlevel.js"></script>
+<script src="scriptlevel copy.js"></script>
+
+</body>
+</html>
