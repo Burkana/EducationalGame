@@ -44,8 +44,17 @@ body {
   margin-bottom: 30px;
   color: var(--blue-eclipse-light);
 }
+.logotwo
+{
+display: none;
+}
 
 .text-logo{
+  color: white;
+  font-size: larger;
+  text-decoration: none;
+}
+.text-logo-two{
   color: white;
   font-size: larger;
   text-decoration: none;
@@ -140,6 +149,83 @@ a{
   background-color: var(--blue-eclipse-light);
 }
 
+
+.sidebar {
+  width: 200px;
+  transition: width 0.25s ease-in-out;
+
+}
+
+.sidebar.collapsed {
+  width: 50px;    
+}
+
+.content-area {
+  margin-left: 200px;
+  transition: margin-left 0.25s ease-in-out;
+}
+.sidebar.collapsed ~ .content-area {
+  margin-left: 60px;
+}
+
+.sidebar.collapsed .menu-text {
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar.collapsed .logo{
+display: none;
+}
+.sidebar.collapsed .logotwo{
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--blue-eclipse-light);
+}
+
+
+.menu-item {
+  transition: justify-content 0.25s;
+}
+
+
+
+.menu-toggle {
+  align-self: flex-end;
+  width: 50px;
+  height: 100%;      
+  border: none;
+  background: var(--blue-eclipse-medium);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s, background 0.25s;
+}
+
+
+.menu-toggle::before {
+  content: "❮";           
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  font-size: 18px;
+  color: white;
+}
+
+
+.sidebar.collapsed .menu-toggle::before {
+  content: "❯";
+}
+
+
+.menu-toggle:hover {
+  background: var(--hover-color);
+}
+
+
+
+
 @media (max-width:900px) {
 
   .btn {
@@ -155,5 +241,6 @@ a{
     background-color: var(--blue-eclipse-medium);
     width: 110px;
   }
+
 
 }

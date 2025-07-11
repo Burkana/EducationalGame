@@ -10,28 +10,34 @@
 
 <div class="sidebar">
   <div class="logo"><a class="text-logo" href="main.html">CodeBusters</a></div>
+  <div class="logotwo"><a class="text-logo-two" href="main.html">C<br>B</a></div>
 
-  <div class="menu-item" data-id="learn">
-    <img src="https://img.icons8.com/emoji/48/home-emoji.png" />
-    <span class="menu-text">Играй</span>
-  </div>
 
-  <div class="menu-item" data-id="letters">
-    <img src="https://img.icons8.com/ios-filled/50/letters.png" />
-    <span class="menu-text">Писма</span>
-  </div>
+<div class="menu-item" data-id="play">
+<img src="icons/playicon-white.png" />
+  <span class="menu-text">Играй</span>
+</div>
 
-  <div class="menu-item" data-id="profile">
-    <img src="https://img.icons8.com/3d-fluency/50/user.png" />
-    <span class="menu-text">Профил</span>
-  </div>
+<div class="menu-item" data-id="shop">
+  <img src="icons/storeicon-white.png" />
+  <span class="menu-text">Магазин</span>
+</div>
+
+<div class="menu-item" data-id="profile">
+  <img src="icons/profileicon-white.png" />
+  <span class="menu-text">Профил</span>
+</div>
+
+
+<button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+</button>
 </div>
 
 <div class="content-area">
   <!-- Играй -->
-  <div class="tab-content" data-id="learn">
+  <div class="tab-content" data-id="play">
     <div id="levels" class="screen">
-      <h2>Избери ниво:</h2>
+      <h2>Избери ниво</h2>
       <div class="level-buttons">
         <!-- Dynamic level links -->
         <a href="level.html?level=1"><button>1</button></a>
@@ -48,15 +54,12 @@
     </div>
   </div>
 
-  <!-- Писма -->
-  <div class="tab-content" data-id="letters">
-    <h2>Писма</h2>
-    <p>Тук са буквите и писането.</p>
+  <div class="tab-content" data-id="shop">
+    <h2>Магазин</h2>
+    <p>Текущи артикули:</p>
   </div>
 
-  <!-- Профил -->
   <div class="tab-content" data-id="profile">
-
     <h2>Профил</h2>
     <p>Информация за потребителя и настройки.</p>
     <div id="profile"></div>
@@ -64,6 +67,7 @@
 
   </div>
 </div>
+
 <script src="sciripmainlogin.js"></script>
 <script src="scriptmainmenu.js"></script>
 

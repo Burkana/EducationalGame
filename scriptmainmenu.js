@@ -26,3 +26,19 @@ window.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem('activeTab') || 'learn';
       activateTab(saved);
     });
+
+    //The hide option
+ document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('.sidebar');
+  const toggle  = document.getElementById('menu-toggle');
+
+  // auto‑collapse on narrow screens (≤900 px)
+  if (window.matchMedia('(max-width: 900px)').matches) {
+    sidebar.classList.add('collapsed');
+  }
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+});
+
