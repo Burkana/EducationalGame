@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
       const menuItems = document.querySelectorAll('.menu-item');
       const contents = document.querySelectorAll('.tab-content');
-
+      
       function activateTab(id) {
 
         menuItems.forEach(item => {
@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
       });
 
 
-      const saved = localStorage.getItem('activeTab') || 'learn';
+      const saved = localStorage.getItem('activeTab') || 'play';
       activateTab(saved);
     });
 
