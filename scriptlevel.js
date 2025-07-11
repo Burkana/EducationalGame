@@ -103,6 +103,7 @@
       // Bind events for level 2 after innerHTML replacement
       bindLevel2();
 
+      
     } else {
       // For other levels not implemented yet
       instructions.innerHTML = `<h2>Ниво ${level}</h2><p>Това ниво все още не е налично.</p>`;
@@ -217,6 +218,13 @@
       nextBtn.style.display = 'inline-block';
     });
 
+
+
+
+
+
+
+    
     nextBtn.addEventListener('click', () => {
       currentLevel++;
       loadLevel(currentLevel);
