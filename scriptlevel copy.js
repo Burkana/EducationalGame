@@ -9,16 +9,21 @@
   const nameWrapper = document.getElementById('nameInputWrapper');
   const userInput = document.getElementById('userInput');
   const sayHelloBtn = document.getElementById('sayHelloBtn');
-  const headerTitle = document.getElementById('headerTitle');  // Header element to show current level
-  const Title = document.getElementById('title'); // Title element shoows the page name
+  const headerTitle = document.getElementById('headerTitle');
+  const Title = document.getElementById('title'); 
 
 
-  // Helper to get level number from URL query param
+
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     const val = urlParams.get(param);
     return val ? parseInt(val, 10) : null;
   }
+  function updateUrlLevel(level) {
+  const url = new URL(window.location);
+  url.searchParams.set('level', level);
+  window.history.replaceState(null, '', url.toString());
+}
 
   let currentLevel = getQueryParam('level') || 1;
 
@@ -27,7 +32,7 @@
     nextBtn.style.display = 'none';
     nameWrapper.style.display = 'none';
 
-    // Update header to show current level
+
     headerTitle.textContent = `C++ Ниво ${level}`;
     Title.textContent = `CodeBusters C++ – Ниво ${level}`;
 
@@ -60,7 +65,6 @@
         </div>
       `;
 
-      // Bind events for level 1 after innerHTML replacement
       bindLevel1();
 
     } else if (level === 2) {
@@ -100,7 +104,7 @@
       </div>
       `;
 
-      // Bind events for level 2 after innerHTML replacement
+
       bindLevel2();
 
 
@@ -309,6 +313,154 @@ playground.innerHTML = `
 `;
 bindLevel7();
 
+
+    } else if (level === 8) {
+instructions.innerHTML = `
+  <h2>Мисия</h2>
+  <p>
+    Създай програма, която използва <strong>do...while</strong> цикъл и извежда "Counting: i" докато i е по-малко от <strong>въведено число</strong> от потребителя.
+  </p>
+  <ol>
+    <li>Въведи вход от потребителя: <code>cin >> n;</code></li>
+    <li>Използвай <code>int i = 0;</code></li>
+    <li>Създай <code>do { ... } while(i < n);</code> цикъл</li>
+    <li>В тялото на цикъла добави <code>cout << "Counting: " << i << endl;</code> и <code>i++;</code></li>
+  </ol>
+  <p>
+    Програмата трябва да изброи от 0 до n-1.
+  </p>
+`;
+playground.innerHTML = `
+  <div id="codeWrapper">
+    <pre class="codeLine">#include &lt;iostream&gt;</pre>
+    <pre class="codeLine">using namespace std;</pre>
+    <pre class="codeLine">int main() {</pre>
+    <pre class="codeLine">    int n, i = 0;</pre>
+    <input type="text" id="codeInput1" class="codeInput" placeholder="cin >> n;" autocomplete="off"/>
+    
+    <input type="text" id="codeInput2" class="codeInput" placeholder="do {" autocomplete="off"/>
+    <input type="text" id="codeInput3" class="codeInput" placeholder='cout << "Counting: " << i << endl;' autocomplete="off"/>
+    <input type="text" id="codeInput4" class="codeInput" placeholder="i++;" autocomplete="off"/>
+    <input type="text" id="codeInput5" class="codeInput" placeholder="} while(i < n);" autocomplete="off"/>
+
+    <pre class="codeLine">    return 0;</pre>
+    <pre class="codeLine">}</pre>
+  </div>
+
+  <button id="runBtn">Стартирай кода</button>
+
+  <div id="userInputWrapper" style="display:none; margin-top:1rem;">
+    <input type="number" id="userInput" placeholder="Въведи число..." style="padding:0.5rem;border-radius:6px;width:100%;" />
+    <button id="sayHelloBtn" style="margin-top:0.5rem;">Изпълни</button>
+  </div>
+
+  <div id="outputWindow"></div>
+
+  <div id="levelButtons">
+    <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
+    <button id="prevLevelBtn">Предишно ниво</button>
+    <a href="main.html"><button id="menuBtn">Меню</button></a>
+  </div>
+`;
+
+bindLevel8();
+
+} else if (level === 9) {
+instructions.innerHTML = `
+  <h2>Мисия</h2>
+  <p>
+    Сега ще добавим вход от потребителя! 🎯<br><br>
+    <strong>1.</strong> Използвай <code>cin >> n;</code> за да въведеш число от потребителя.<br>
+    <strong>2.</strong> Използвай <code>for</code> цикъл, за да отпечаташ числата от 1 до <code>n</code>.<br><br>
+
+    <strong>Пример:</strong> ако въведеш 4, изходът трябва да е <code>1 2 3 4</code>
+  </p>
+  <ol>
+    <p>1. <code>cin >> n;</code></p>
+    <p>2. <code>for (i = 1; i &lt;= n; i++) {</code></p>
+    <p>3. <code>cout << i << " ";</code></p>
+    <p>4. <code>}</code></p>
+  </ol>
+  <p>
+    ✅ Увери се, че всички редове завършват с <code>;</code> или <code>{ }</code>, както е нужно.
+  </p>
+`;
+
+playground.innerHTML = `
+  <div id="codeWrapper">
+    <pre class="codeLine">#include &lt;iostream&gt;</pre>
+    <pre class="codeLine">using namespace std;</pre>
+    <pre class="codeLine">int main() {</pre>
+    <pre class="codeLine">    int i, n;</pre>
+    <input type="text" id="codeInput1" class="codeInput" placeholder="cin >> n;" autocomplete="off"/>
+    <input type="text" id="codeInput2" class="codeInput" placeholder="for (...) {" autocomplete="off"/>
+    <input type="text" id="codeInput3" class="codeInput" placeholder='cout << i << " ";"' autocomplete="off"/>
+    <input type="text" id="codeInput4" class="codeInput" placeholder="}" autocomplete="off"/>
+    <pre class="codeLine">    return 0;</pre>
+    <pre class="codeLine">}</pre>
+  </div>
+
+  <button id="runBtn">Стартирай кода</button>
+
+  <div id="userInputWrapper" style="display: none; margin-top:1rem;">
+  <input type="number" id="userInput" placeholder="Въведи число n..." style="padding:0.5rem;border-radius:6px;width:100%;" />
+  <button id="sayHelloBtn" style="margin-top:0.5rem;">Изпълни</button>
+</div>
+
+
+  <div id="outputWindow"></div>
+
+  <div id="levelButtons">
+    <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
+    <button id="prevLevelBtn" style="display: block;">Предишно ниво</button>
+    <a href="main.html"><button id="menuBtn">Меню</button></a>
+  </div>
+`;
+
+bindLevel9();
+
+} else if (level === 10) {
+ instructions.innerHTML = `
+  <h2>Мисия: C++ Калкулатор с <code>switch</code></h2>
+  <p>Напишете напълно функционален C++ калкулатор, като въведете целия код ред по ред.</p>
+  <p>Програмата трябва да въвежда две числа и оператор (<code>+ - * /</code>) от потребителя, да изчислява резултата с <code>switch</code> и да показва съобщения за деление на 0 или невалиден оператор.</p>
+  <p>Въведете всички редове включително <code>#include</code>, <code>main()</code>, декларации, логика и <code>return 0;</code>.</p>
+  <p>След като кода е коректен, ще се появят полета за въвеждане на числа и оператор.</p>
+`;
+
+playground.innerHTML = `
+  <div id="codeWrapper" style="font-family: monospace; margin-bottom: 1rem;">
+    <input type="text" class="codeLineInput" placeholder="#include &lt;iostream&gt;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="using namespace std;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="int main() {" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    double a, b;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    char op;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    cin >> a >> op >> b;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    switch(op) {" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="        case '+': cout << (a + b); break;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="        case '-': cout << (a - b); break;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="        case '*': cout << (a * b); break;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="        case '/': " autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="            if (b != 0) cout << (a / b);" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="            else cout << &quot;Деление на 0!&quot;;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="            break;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="        default: cout << &quot;Невалиден оператор!&quot;;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    }" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="    return 0;" autocomplete="off" spellcheck="false" />
+    <input type="text" class="codeLineInput" placeholder="}" autocomplete="off" spellcheck="false" />
+  </div>
+  <button id="runBtn">Стартирай кода</button>
+
+  <div id="inputWrapper" style="margin-top:1rem; display:none;">
+    <input type="number" id="inputA" placeholder="Въведете число a" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
+    <input type="text" id="inputOp" maxlength="1" placeholder="Въведете оператор (+ - * /)" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
+    <input type="number" id="inputB" placeholder="Въведете число b" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
+    <button id="calcBtn">Изчисли</button>
+  </div>
+
+  <div id="outputWindow" style="margin-top: 1rem; font-weight: bold;"></div>
+`;
+bindLevel10();
 } else if (level === 8) {
 instructions.innerHTML = `
   <h2>Мисия</h2>
@@ -458,7 +610,7 @@ playground.innerHTML = `
 bindLevel10();
 
     } else {
-      // For other levels not implemented yet
+
       instructions.innerHTML = `<h2>Ниво ${level}</h2><p>Това ниво все още не е налично.</p>`;
       playground.innerHTML = `<div id="levelButtons">
       <button id="prevLevelBtn" style="display: block;">Предишно ниво</button>
@@ -481,6 +633,7 @@ bindLevel10();
 
       prevBtn.addEventListener('click', () => {
         currentLevel--;
+        updateUrlLevel(currentLevel);
         loadLevel(currentLevel);
       });
   }
@@ -515,7 +668,9 @@ bindLevel10();
 
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
+      window.location.href = `level.html?level=${currentLevel}`;
     });
   }
 
@@ -572,10 +727,14 @@ bindLevel10();
     });
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
     prevBtn.addEventListener('click', () => {
       currentLevel--;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
   }
@@ -639,10 +798,14 @@ function bindLevel3() {
 
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
     prevBtn.addEventListener('click', () => {
       currentLevel--;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
 
@@ -693,11 +856,15 @@ function bindLevel4() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -745,11 +912,15 @@ function bindLevel4() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -834,11 +1005,15 @@ function bindLevel6() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -900,14 +1075,167 @@ function bindLevel7() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    updateUrlLevel(currentLevel);
+    loadLevel(currentLevel);
+    window.location.href = `level.html?level=${currentLevel}`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentLevel--;
+    updateUrlLevel(currentLevel);
+    loadLevel(currentLevel);
+    window.location.href = `level.html?level=${currentLevel}`;
+  });
+}
+function bindLevel8() {
+  const in1 = document.getElementById('codeInput1');
+  const in2 = document.getElementById('codeInput2');
+  const in3 = document.getElementById('codeInput3');
+  const in4 = document.getElementById('codeInput4');
+  const in5 = document.getElementById('codeInput5');
+  const runBtn = document.getElementById('runBtn');
+  const output = document.getElementById('outputWindow');
+  const userInputWrapper = document.getElementById('userInputWrapper');
+  const userInput = document.getElementById('userInput');
+  const sayHelloBtn = document.getElementById('sayHelloBtn');
+  const nextBtn = document.getElementById('nextLevelBtn');
+  const prevBtn = document.getElementById('prevLevelBtn');
+
+  runBtn.addEventListener('click', () => {
+    const validCin = /^\s*cin\s*>>\s*n\s*;\s*$/;
+    const validDo = /^\s*do\s*{\s*$/;
+    const validCout = /^\s*cout\s*<<\s*"Counting:\s*"\s*<<\s*i\s*<<\s*endl\s*;\s*$/;
+    const validInc = /^\s*i\+\+\s*;\s*$/;
+    const validWhile = /^\s*}\s*while\s*\(\s*i\s*<\s*n\s*\)\s*;\s*$/;
+
+    output.innerHTML = '';
+    userInputWrapper.style.display = 'none';
+
+    if (
+      validCin.test(in1.value.trim()) &&
+      validDo.test(in2.value.trim()) &&
+      validCout.test(in3.value.trim()) &&
+      validInc.test(in4.value.trim()) &&
+      validWhile.test(in5.value.trim())
+    ) {
+      output.innerHTML = '✅ Кодът изглежда правилен. Въведи число и натисни "Изпълни".';
+      userInputWrapper.style.display = 'block';
+    } else {
+      output.innerHTML = '<span class="error">⛔ Провери дали синтаксисът на do-while цикъла е коректен.</span>';
+    }
+  });
+
+  sayHelloBtn.addEventListener('click', () => {
+    const n = parseInt(userInput.value.trim());
+    if (isNaN(n)) {
+      output.innerHTML = '<span class="error">⛔ Моля въведи валидно число!</span>';
+      return;
+    }
+    let result = '';
+    let i = 0;
+    do {
+      result += `Counting: ${i}<br>`;
+      i++;
+    } while (i < n);
+    output.innerHTML = `<span class="success">${result}</span>\n\n✅ Нивото е преминато!`;
+    nextBtn.style.display = 'inline-block';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
+
+
+
+function bindLevel9() {
+  const [in1, in2, in3, in4] = [
+    document.getElementById('codeInput1'),
+    document.getElementById('codeInput2'),
+    document.getElementById('codeInput3'),
+    document.getElementById('codeInput4')
+  ];
+  const userInputWrapper = document.getElementById('userInputWrapper');
+  const runBtn = document.getElementById('runBtn');
+  const output = document.getElementById('outputWindow');
+  const nextBtn = document.getElementById('nextLevelBtn');
+  const prevBtn = document.getElementById('prevLevelBtn');
+  const userInput = document.getElementById('userInput');
+  const sayHelloBtn = document.getElementById('sayHelloBtn');
+
+  [in1, in2, in3, in4].forEach((input, i, arr) => {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (i < arr.length - 1) arr[i + 1].focus();
+        else runBtn.click();
+      }
+    });
+  });
+
+  runBtn.addEventListener('click', () => {
+    const validCin = /^\s*cin\s*>>\s*n\s*;\s*$/;
+    const validFor = /^\s*for\s*\(\s*i\s*=\s*1\s*;\s*i\s*<=\s*n\s*;\s*i\+\+\s*\)\s*{\s*$/;
+    const validCout = /^\s*cout\s*<<\s*i\s*<<\s*" "\s*;\s*$/;
+    const validClose = /^\s*}\s*$/;
+
+    output.innerHTML = '';
+    nextBtn.style.display = 'none';
+
+    if (
+  validCin.test(in1.value.trim()) &&
+  validFor.test(in2.value.trim()) &&
+  validCout.test(in3.value.trim()) &&
+  validClose.test(in4.value.trim())
+) {
+  output.innerHTML = `✅ Кодът изглежда правилен. Въведи число и натисни "Изпълни".`;
+  userInputWrapper.style.display = 'block'; // <-- показваме входа
+} else {
+  output.innerHTML = `<span class="error">⛔ Някой ред е неправилен. Увери се, че всеки ред е синтактично коректен.</span>`;
+  userInputWrapper.style.display = 'none'; // <-- скриваме го, ако е грешно
+}
+
+  });
+
+  sayHelloBtn.addEventListener('click', () => {
+    const val = parseInt(userInput.value, 10);
+    if (isNaN(val) || val < 1) {
+      output.innerHTML = '<span class="error">⛔ Моля въведи число по-голямо от 0</span>';
+      return;
+    }
+    let result = '';
+    for (let i = 1; i <= val; i++) {
+      result += i + ' ';
+    }
+    output.innerHTML = `<span class="success">${result.trim()}</span><br><br>✅ Нивото е преминато!`;
+    nextBtn.style.display = 'inline-block';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
+    loadLevel(currentLevel);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
+    loadLevel(currentLevel);
+  });
+}
+
 
 function bindLevel8() {
   const in1 = document.getElementById('codeInput1');
@@ -1051,3 +1379,61 @@ function bindLevel9() {
   loadLevel(currentLevel);
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtn = document.getElementById('nextLevelBtn');
+  const urlParams = new URLSearchParams(window.location.search);
+  const level = urlParams.get('level') || "1"; 
+  const isGuest = urlParams.get('guest') === 'true' || localStorage.getItem('isGuest') === 'true';
+
+  function updateCoinDisplay(val) {
+    document.querySelectorAll('.coinBalance').forEach(el => el.innerText = val);
+  }
+
+  if (isGuest) {
+    let coins = localStorage.getItem('guestCoins');
+    if (coins === null) {
+      coins = 100;
+      localStorage.setItem('guestCoins', coins);
+    }
+    updateCoinDisplay(coins);
+  } else {
+    fetch('http://127.0.0.1:3000/api/me', { credentials: 'include' })
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(user => {
+        updateCoinDisplay(user.coins ?? 100);
+      });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (isGuest) {
+      let completed = JSON.parse(localStorage.getItem('guestCompletedLevels') || '[]');
+      completed = completed.map(String);
+      if (!completed.includes(level)) {
+        let coins = parseInt(localStorage.getItem('guestCoins') || '100', 10) + 50;
+        localStorage.setItem('guestCoins', coins);
+        completed.push(level);
+        localStorage.setItem('guestCompletedLevels', JSON.stringify(completed));
+        updateCoinDisplay(coins);
+        //alert('+50 монети! Нов баланс: ' + coins);
+      } else {
+        //alert('Вече сте получили монети за това ниво!');
+      }
+    } else {
+      fetch('http://127.0.0.1:3000/api/complete-level', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ level: level })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.coinsAdded) {
+          updateCoinDisplay(data.coins);
+          //alert('+50 монети! Нов баланс: ' + data.coins);
+        } else {
+          //alert('Вече сте получили монети за това ниво!');
+        }
+      });
+    }
+  });
+});

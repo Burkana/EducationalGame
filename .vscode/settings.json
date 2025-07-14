@@ -9,7 +9,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "UserProfile",
+            "name": "Users",
             "database": "gameusers",
             "username": "root",
             "password": "1234"

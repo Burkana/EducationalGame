@@ -63,7 +63,11 @@ app.post('/login', (req, res) => {
 
 app.get('/api/me', (req, res) => {
   if (!req.session.user) return res.status(401).json({ error: 'Not logged in' });
-  res.json(req.session.user);
+  // Fetch coins from DB
+  db.query('SELECT coins FROM Users WHERE id = ?', [req.session.user.id], (err, results) => {
+    if (err || !results.length) return res.status(500).json({ error: 'DB error' });
+    res.json({ ...req.session.user, coins: results[0].coins });
+  });
 });
 
 app.post('/logout', (req, res) => {
@@ -71,6 +75,33 @@ app.post('/logout', (req, res) => {
     if (err) { console.error('Logout error:', err); return res.status(500).send('Could not log out'); }
     res.clearCookie('connect.sid');
     res.send('Logged out');
+  });
+});
+
+app.post('/api/complete-level', (req, res) => {
+  const userId = req.session.user?.id;
+  const level = parseInt(req.body.level, 10);
+  if (!userId || !level) return res.status(400).json({ error: 'Missing data' });
+
+  db.query('SELECT * FROM CompletedLevels WHERE user_id = ? AND level = ?', [userId, level], (err, results) => {
+    if (err) return res.status(500).json({ error: 'DB error' });
+    if (results.length) {
+      db.query('SELECT coins FROM Users WHERE id = ?', [userId], (err, results) => {
+        if (err || !results.length) return res.status(500).json({ error: 'DB error' });
+        res.json({ coins: results[0].coins, coinsAdded: false });
+      });
+    } else {
+      db.query('INSERT INTO CompletedLevels (user_id, level) VALUES (?, ?)', [userId, level], (err) => {
+        if (err) return res.status(500).json({ error: 'DB error' });
+        db.query('UPDATE Users SET coins = coins + 50 WHERE id = ?', [userId], (err) => {
+          if (err) return res.status(500).json({ error: 'DB error' });
+          db.query('SELECT coins FROM Users WHERE id = ?', [userId], (err, results) => {
+            if (err || !results.length) return res.status(500).json({ error: 'DB error' });
+            res.json({ coins: results[0].coins, coinsAdded: true });
+          });
+        });
+      });
+    }
   });
 });
 

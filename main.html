@@ -55,12 +55,18 @@
   </div>
 
   <div class="tab-content" data-id="shop">
-    <h2>Магазин</h2>
-    <p>Текущи артикули:</p>
+  <h2>Магазин</h2>
+  <div id="coinBalanceWrapper">
+  <p>Монети: <span class="coinBalance">0</span></p>
+  </div>
+  <p>Текущи артикули:</p>
   </div>
 
   <div class="tab-content" data-id="profile">
     <h2>Профил</h2>
+    <div id="coinBalanceWrapper">
+    <p>Монети: <span class="coinBalance">0</span></p>
+    </div>
     <p>Информация за потребителя и настройки.</p>
     <div id="profile"></div>
     <a href="index.html"><button id="logoutBtn" class="btn">Изход</button></a>
@@ -68,8 +74,11 @@
   </div>
 </div>
 
+<script src="progress.js"></script>
 <script src="sciripmainlogin.js"></script>
 <script src="scriptmainmenu.js"></script>
+
+
 
 </body>
 </html>

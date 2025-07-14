@@ -9,16 +9,21 @@
   const nameWrapper = document.getElementById('nameInputWrapper');
   const userInput = document.getElementById('userInput');
   const sayHelloBtn = document.getElementById('sayHelloBtn');
-  const headerTitle = document.getElementById('headerTitle');  // Header element to show current level
-  const Title = document.getElementById('title'); // Title element shoows the page name
+  const headerTitle = document.getElementById('headerTitle');
+  const Title = document.getElementById('title'); 
 
 
-  // Helper to get level number from URL query param
+
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     const val = urlParams.get(param);
     return val ? parseInt(val, 10) : null;
   }
+  function updateUrlLevel(level) {
+  const url = new URL(window.location);
+  url.searchParams.set('level', level);
+  window.history.replaceState(null, '', url.toString());
+}
 
   let currentLevel = getQueryParam('level') || 1;
 
@@ -27,7 +32,7 @@
     nextBtn.style.display = 'none';
     nameWrapper.style.display = 'none';
 
-    // Update header to show current level
+
     headerTitle.textContent = `C++ Ниво ${level}`;
     Title.textContent = `CodeBusters C++ – Ниво ${level}`;
 
@@ -60,7 +65,6 @@
         </div>
       `;
 
-      // Bind events for level 1 after innerHTML replacement
       bindLevel1();
 
     } else if (level === 2) {
@@ -100,7 +104,7 @@
       </div>
       `;
 
-      // Bind events for level 2 after innerHTML replacement
+
       bindLevel2();
 
 
@@ -289,10 +293,10 @@ playground.innerHTML = `
     <pre class="codeLine">using namespace std;</pre>
     <pre class="codeLine">int main() {</pre>
     <pre class="codeLine">    int i = 1;</pre>
-    <input type="text" id="codeInput1" class="codeInput" placeholder="while ( ... ) {" autocomplete="off"/>
-    <input type="text" id="codeInput2" class="codeInput" placeholder="cout << i;" autocomplete="off"/>
-    <input type="text" id="codeInput3" class="codeInput" placeholder="i++;" autocomplete="off"/>
-    <input type="text" id="codeInput4" class="codeInput" placeholder="}" autocomplete="off"/>
+    <input type="text" id="codeInput1" class="codeInput" placeholder="while ( ... ) {" />
+    <input type="text" id="codeInput2" class="codeInput" placeholder="cout << i;" />
+    <input type="text" id="codeInput3" class="codeInput" placeholder="i++;" />
+    <input type="text" id="codeInput4" class="codeInput" placeholder="}" />
     <pre class="codeLine">    return 0;</pre>
     <pre class="codeLine">}</pre>
   </div>
@@ -309,7 +313,8 @@ playground.innerHTML = `
 `;
 bindLevel7();
 
-} else if (level === 8) {
+
+    } else if (level === 8) {
 instructions.innerHTML = `
   <h2>Мисия</h2>
   <p>
@@ -458,7 +463,7 @@ playground.innerHTML = `
 bindLevel10();
 
     } else {
-      // For other levels not implemented yet
+
       instructions.innerHTML = `<h2>Ниво ${level}</h2><p>Това ниво все още не е налично.</p>`;
       playground.innerHTML = `<div id="levelButtons">
       <button id="prevLevelBtn" style="display: block;">Предишно ниво</button>
@@ -481,6 +486,7 @@ bindLevel10();
 
       prevBtn.addEventListener('click', () => {
         currentLevel--;
+        updateUrlLevel(currentLevel);
         loadLevel(currentLevel);
       });
   }
@@ -515,7 +521,9 @@ bindLevel10();
 
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
+      window.location.href = `level.html?level=${currentLevel}`;
     });
   }
 
@@ -572,10 +580,14 @@ bindLevel10();
     });
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
     prevBtn.addEventListener('click', () => {
       currentLevel--;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
   }
@@ -639,10 +651,14 @@ function bindLevel3() {
 
     nextBtn.addEventListener('click', () => {
       currentLevel++;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
     prevBtn.addEventListener('click', () => {
       currentLevel--;
+      window.location.href = `level.html?level=${currentLevel}`;
+      updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
 
@@ -693,11 +709,15 @@ function bindLevel4() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -745,11 +765,15 @@ function bindLevel4() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -834,11 +858,15 @@ function bindLevel6() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -900,15 +928,18 @@ function bindLevel7() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
+    window.location.href = `level.html?level=${currentLevel}`;
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
+    window.location.href = `level.html?level=${currentLevel}`;
   });
 }
-
 function bindLevel8() {
   const in1 = document.getElementById('codeInput1');
   const in2 = document.getElementById('codeInput2');
@@ -964,6 +995,15 @@ function bindLevel8() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
+    loadLevel(currentLevel);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
@@ -1035,15 +1075,18 @@ function bindLevel9() {
 
   nextBtn.addEventListener('click', () => {
     currentLevel++;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 
   prevBtn.addEventListener('click', () => {
     currentLevel--;
+    window.location.href = `level.html?level=${currentLevel}`;
+    updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
 }
-
 
 
   
@@ -1051,3 +1094,61 @@ function bindLevel9() {
   loadLevel(currentLevel);
 })();
 
+document.addEventListener('DOMContentLoaded', () => {
+  const nextBtn = document.getElementById('nextLevelBtn');
+  const urlParams = new URLSearchParams(window.location.search);
+  const level = urlParams.get('level') || "1"; 
+  const isGuest = urlParams.get('guest') === 'true' || localStorage.getItem('isGuest') === 'true';
+
+  function updateCoinDisplay(val) {
+    document.querySelectorAll('.coinBalance').forEach(el => el.innerText = val);
+  }
+
+  if (isGuest) {
+    let coins = localStorage.getItem('guestCoins');
+    if (coins === null) {
+      coins = 100;
+      localStorage.setItem('guestCoins', coins);
+    }
+    updateCoinDisplay(coins);
+  } else {
+    fetch('http://127.0.0.1:3000/api/me', { credentials: 'include' })
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(user => {
+        updateCoinDisplay(user.coins ?? 100);
+      });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (isGuest) {
+      let completed = JSON.parse(localStorage.getItem('guestCompletedLevels') || '[]');
+      completed = completed.map(String);
+      if (!completed.includes(level)) {
+        let coins = parseInt(localStorage.getItem('guestCoins') || '100', 10) + 50;
+        localStorage.setItem('guestCoins', coins);
+        completed.push(level);
+        localStorage.setItem('guestCompletedLevels', JSON.stringify(completed));
+        updateCoinDisplay(coins);
+        //alert('+50 монети! Нов баланс: ' + coins);
+      } else {
+        //alert('Вече сте получили монети за това ниво!');
+      }
+    } else {
+      fetch('http://127.0.0.1:3000/api/complete-level', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ level: level })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.coinsAdded) {
+          updateCoinDisplay(data.coins);
+          //alert('+50 монети! Нов баланс: ' + data.coins);
+        } else {
+          //alert('Вече сте получили монети за това ниво!');
+        }
+      });
+    }
+  });
+});
