@@ -421,45 +421,60 @@ bindLevel9();
 
 } else if (level === 10) {
  instructions.innerHTML = `
-  <h2>Мисия: C++ Калкулатор с <code>switch</code></h2>
-  <p>Напишете напълно функционален C++ калкулатор, като въведете целия код ред по ред.</p>
-  <p>Програмата трябва да въвежда две числа и оператор (<code>+ - * /</code>) от потребителя, да изчислява резултата с <code>switch</code> и да показва съобщения за деление на 0 или невалиден оператор.</p>
-  <p>Въведете всички редове включително <code>#include</code>, <code>main()</code>, декларации, логика и <code>return 0;</code>.</p>
-  <p>След като кода е коректен, ще се появят полета за въвеждане на числа и оператор.</p>
+  <h2>Мисия: Създай калкулатор</h2>
+  <p>
+    Сега ще създадеш прост C++ калкулатор, който използва <code>switch</code>, за да изчисли резултата между две числа.<br><br>
+    ✅ Потребителят трябва да въведе <code>число1 оператор число2</code>.<br>
+    ➕ Поддържани оператори: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.<br>
+    ⚠️ Ако се дели на 0, изведи "Деление на 0!"<br>
+    ❗ Ако операторът не е валиден, изведи "Невалиден оператор!"<br><br>
+
+    <strong>Примерен вход:</strong> <code>3 + 5</code><br>
+    <strong>Изход:</strong> <code>8</code>
+  </p>
+  <p>Въведи всички редове на програмата ръчно, включително <code>#include</code> и <code>main()</code>.</p>
+  <p><strong>Увери се, че всеки ред завършва с <code>;</code> или <code>}</code>, където е нужно.</strong></p>
 `;
+
 
 playground.innerHTML = `
-  <div id="codeWrapper" style="font-family: monospace; margin-bottom: 1rem;">
-    <input type="text" class="codeLineInput" placeholder="#include &lt;iostream&gt;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="using namespace std;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="int main() {" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    double a, b;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    char op;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    cin >> a >> op >> b;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    switch(op) {" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="        case '+': cout << (a + b); break;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="        case '-': cout << (a - b); break;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="        case '*': cout << (a * b); break;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="        case '/': " autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="            if (b != 0) cout << (a / b);" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="            else cout << &quot;Деление на 0!&quot;;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="            break;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="        default: cout << &quot;Невалиден оператор!&quot;;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    }" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="    return 0;" autocomplete="off" spellcheck="false" />
-    <input type="text" class="codeLineInput" placeholder="}" autocomplete="off" spellcheck="false" />
+  <div id="codeWrapper">
+    <input type="text" class="codeInput" id="codeInput1" placeholder="#include <iostream>" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput2" placeholder="using namespace std;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput3" placeholder="int main() {" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput4" placeholder="double a, b;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput5" placeholder="char op;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput6" placeholder="cin >> a >> op >> b;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput7" placeholder="switch(op) {" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput8" placeholder='case \'+\': cout << (a + b); break;' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput9" placeholder='case \'-\': cout << (a - b); break;' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput10" placeholder='case \'*\': cout << (a * b); break;' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput11" placeholder='case \'/\':' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput12" placeholder='if (b != 0) cout << (a / b);' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput13" placeholder='else cout << "Деление на 0!";' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput14" placeholder="break;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput15" placeholder='default: cout << "Невалиден оператор!";' autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput16" placeholder="}" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput17" placeholder="return 0;" autocomplete="off"/>
+    <input type="text" class="codeInput" id="codeInput18" placeholder="}" autocomplete="off"/>
   </div>
+
   <button id="runBtn">Стартирай кода</button>
 
-  <div id="inputWrapper" style="margin-top:1rem; display:none;">
-    <input type="number" id="inputA" placeholder="Въведете число a" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
-    <input type="text" id="inputOp" maxlength="1" placeholder="Въведете оператор (+ - * /)" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
-    <input type="number" id="inputB" placeholder="Въведете число b" style="margin-bottom:0.5rem; width: 100%; padding: 0.5rem; border-radius: 5px;" />
-    <button id="calcBtn">Изчисли</button>
+  <div id="userInputWrapper" style="display: none; margin-top:1rem;">
+    <input type="text" id="userInput" placeholder="Въведи: 3 + 5" />
+    <button id="calculateBtn" style="margin-top:0.5rem;">Изпълни</button>
   </div>
 
-  <div id="outputWindow" style="margin-top: 1rem; font-weight: bold;"></div>
+  <div id="outputWindow"></div>
+
+  <div id="levelButtons">
+    <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
+    <button id="prevLevelBtn">Предишно ниво</button>
+    <a href="main.html"><button id="menuBtn">Меню</button></a>
+  </div>
 `;
+
 bindLevel10();
 
     } else {
@@ -1088,6 +1103,98 @@ function bindLevel9() {
   });
 }
 
+function bindLevel10() {
+  const inputs = Array.from(document.querySelectorAll('.codeInput'));
+  const runBtn = document.getElementById('runBtn');
+  const userInputWrapper = document.getElementById('userInputWrapper');
+  const userInput = document.getElementById('userInput');
+  const calcBtn = document.getElementById('calculateBtn');
+  const output = document.getElementById('outputWindow');
+  const nextBtn = document.getElementById('nextLevelBtn');
+  const prevBtn = document.getElementById('prevLevelBtn');
+
+  inputs.forEach((input, i, arr) => {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (i < arr.length - 1) arr[i + 1].focus();
+        else runBtn.click();
+      }
+    });
+  });
+
+  runBtn.addEventListener('click', () => {
+    const expected = [
+      /^\s*#include\s*<iostream>\s*$/,
+      /^\s*using\s+namespace\s+std\s*;\s*$/,
+      /^\s*int\s+main\s*\(\)\s*{\s*$/,
+      /^\s*double\s+a\s*,\s*b\s*;\s*$/,
+      /^\s*char\s+op\s*;\s*$/,
+      /^\s*cin\s*>>\s*a\s*>>\s*op\s*>>\s*b\s*;\s*$/,
+      /^\s*switch\s*\(\s*op\s*\)\s*{\s*$/,
+      /^\s*case\s+'\+'\s*:\s*cout\s*<<\s*\(a\s*\+\s*b\)\s*;\s*break\s*;\s*$/,
+      /^\s*case\s+'-'\s*:\s*cout\s*<<\s*\(a\s*-\s*b\)\s*;\s*break\s*;\s*$/,
+      /^\s*case\s+'\*'\s*:\s*cout\s*<<\s*\(a\s*\*\s*b\)\s*;\s*break\s*;\s*$/,
+      /^\s*case\s+'\/'\s*:\s*$/,
+      /^\s*if\s*\(\s*b\s*!=\s*0\s*\)\s*cout\s*<<\s*\(a\s*\/\s*b\)\s*;\s*$/,
+      /^\s*else\s*cout\s*<<\s*"Деление на 0!"\s*;\s*$/,
+      /^\s*break\s*;\s*$/,
+      /^\s*default\s*:\s*cout\s*<<\s*"Невалиден оператор!"\s*;\s*$/,
+      /^\s*}\s*$/,
+      /^\s*return\s+0\s*;\s*$/,
+      /^\s*}\s*$/
+    ];
+
+    const allCorrect = inputs.every((input, idx) => expected[idx].test(input.value.trim()));
+
+    output.innerHTML = '';
+    nextBtn.style.display = 'none';
+
+    if (allCorrect) {
+      output.innerHTML = `✅ Кодът изглежда правилен. Въведи израз за изчисление и натисни "Изпълни".`;
+      userInputWrapper.style.display = 'block';
+    } else {
+      output.innerHTML = `<span class="error">⛔ Някой ред е неправилен. Провери синтаксиса и интервалите.</span>`;
+      userInputWrapper.style.display = 'none';
+    }
+  });
+
+  calcBtn.addEventListener('click', () => {
+    const val = userInput.value.trim();
+    const match = val.match(/^(-?\d+(\.\d+)?)\s*([+\-*/])\s*(-?\d+(\.\d+)?)$/);
+
+    if (!match) {
+      output.innerHTML = `<span class="error">⛔ Невалиден вход. Използвай формат: 3 + 5</span>`;
+      return;
+    }
+
+    const a = parseFloat(match[1]);
+    const op = match[3];
+    const b = parseFloat(match[4]);
+
+    let result;
+    switch (op) {
+      case '+': result = a + b; break;
+      case '-': result = a - b; break;
+      case '*': result = a * b; break;
+      case '/': result = b !== 0 ? a / b : 'Деление на 0!'; break;
+      default: result = 'Невалиден оператор!';
+    }
+
+    output.innerHTML = `<span class="success">${result}</span><br><br>✅ Нивото е преминато!`;
+    nextBtn.style.display = 'inline-block';
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentLevel++;
+    loadLevel(currentLevel);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentLevel--;
+    loadLevel(currentLevel);
+  });
+}
 
   
   // Initial load
