@@ -12,20 +12,25 @@
   const headerTitle = document.getElementById('headerTitle');
   const Title = document.getElementById('title'); 
 
-
-
+  let currentLevel = getQueryParam('level') || 1;
+ 
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     const val = urlParams.get(param);
     return val ? parseInt(val, 10) : null;
   }
+
   function updateUrlLevel(level) {
   const url = new URL(window.location);
   url.searchParams.set('level', level);
   window.history.replaceState(null, '', url.toString());
-}
+  }
 
-  let currentLevel = getQueryParam('level') || 1;
+  function updateCoinDisplay(val) {
+  document.querySelectorAll('.coinBalance').forEach(el => el.innerText = val);
+  }
+
+  
 
   function loadLevel(level) {
     output.innerHTML = '';
@@ -36,8 +41,8 @@
     headerTitle.textContent = `C++ Ниво ${level}`;
     Title.textContent = `CodeBusters C++ – Ниво ${level}`;
 
-
-    if (level === 1) {
+// Level 1
+if (level === 1) {
       instructions.innerHTML = `
         <h2>Мисия</h2>
         <p>
@@ -45,20 +50,20 @@
           Тя трябва да изведе точно <strong>Hello, C++ World!</strong> и да завършва с точка и запетая.<br>
           За да изведете текста в командата той трябва да е в кавички <strong>" "</strong> <br> 
           и след тях да завършите с точка и запетая <strong>;</strong>  
-
-          <br><br>Подсказка<br> cout << "Hello, C++ World!";
         </p>
+        <button id="hintBtn">Подсказка (50 монети)</button>
       `;
       playground.innerHTML = `
         <div id="codeWrapper">
           <pre class="codeLine">#include &lt;iostream&gt;</pre>
           <pre class="codeLine">using namespace std;</pre>
           <pre class="codeLine">int main() {</pre>
-          <input type="text" id="codeInput" class="codeInput" placeholder="cout<< <– Пишете тук –>" autocomplete="off" spellcheck="false" />
+          <input type="text" id="codeInput" class="codeInput" placeholder="cout<<&quot;Hello, C++ World!&quot;;" autocomplete="off" spellcheck="false" />
           <pre class="codeLine">    return 0;</pre>
           <pre class="codeLine">}</pre>
         </div>
         <button id="runBtn">Стартирай кода</button>
+        
         <div id="outputWindow"></div>
         <div id="levelButtons">
           <button id="nextLevelBtn" style="display: none;">Следващо ниво</button>
@@ -69,7 +74,9 @@
 
       bindLevel1();
 
-    } else if (level === 2) {
+} 
+// Level 2
+else if (level === 2) {
       instructions.innerHTML = `
         <h2>Мисия</h2>
         <p>Добавете два реда C++ код между <strong>main()</strong> и <strong>return 0;</strong></p>
@@ -77,9 +84,8 @@
           <p><strong>1. cin >> name;</strong> за въвеждане на вход от потребителя.</p>
           <p><strong>2. cout << "Hello, " << name << "!";</strong> за поздрав.</p>
           Tрябва да изведе точно <strong>Hello, "въведеното от вас име"</strong>
-
-          <br><br>Подсказка<br> 1. cin >> name;
-                        <br>2. cout << "Hello, " << name << "!";
+          <br>
+          <button id="hintBtn">Подсказка (50 монети)</button>
         </ol>
       `;
       playground.innerHTML = `
@@ -88,8 +94,8 @@
           <pre class="codeLine">using namespace std;</pre>
           <pre class="codeLine">int main() {</pre>
           <pre class="codeLine">    string name;</pre>
-          <input type="text" id="codeInput1" class="codeInput" placeholder="cin>>  <– Пишете тук –>" autocomplete="off" spellcheck="false" />
-          <input type="text" id="codeInput2" class="codeInput" placeholder="cout<< <– Пишете тук –>" autocomplete="off" spellcheck="false" />
+          <input type="text" id="codeInput1" class="codeInput" placeholder="cin >> name;" autocomplete="off" spellcheck="false" />
+          <input type="text" id="codeInput2" class="codeInput" placeholder="cout << &quot;Hello, &quot; << name << &quot;!&quot;;" autocomplete="off" spellcheck="false" />
           <pre class="codeLine">    return 0;</pre>
           <pre class="codeLine">}</pre>
         </div>
@@ -113,7 +119,9 @@
       bindLevel2();
 
 
-} else if (level === 3) {
+} 
+// Level 3
+else if (level === 3) {
   instructions.innerHTML = `
     <h2>Мисия</h2>
     <p>Напишете програма, която въвежда две цели числа и извежда тяхната сума.</p>
@@ -121,6 +129,7 @@
       <p><strong>1. cin >> a;</strong> – за въвеждане на първото число</p>
       <p><strong>2. cin >> b;</strong> – за въвеждане на второто число</p>
       <p><strong>3. cout << a + b;</strong> – за извеждане на резултата</p>
+      <button id="hintBtn">Подсказка (50 монети)</button>
     </ol>
   `;
   playground.innerHTML = `
@@ -156,7 +165,9 @@
   bindLevel3();
 
 
-}else if (level === 4) {
+}
+// Level 4
+else if (level === 4) {
   instructions.innerHTML = `
     <h2>Мисия</h2>
     <p>
@@ -164,6 +175,7 @@
       Ако условието е вярно, трябва да се изведе <strong>"Passed"</strong>.
     </p>
     <p>Напишете кода между <strong>main()</strong> и <strong>return 0;</strong>.</p>
+    <button id="hintBtn">Подсказка (50 монети)</button>
   `;
 
   playground.innerHTML = `
@@ -191,13 +203,16 @@
   bindLevel4(); // call level 4 logic
 
 
-} else if (level === 5) {
+} 
+// Level 5
+else if (level === 5) {
   instructions.innerHTML = `
     <h2>Мисия</h2>
     <p>
       Попълнете условие с <code>if</code> и <code>else</code> на два реда:<br>
       <strong>Първи ред:</strong> ако <code>score >= 50</code>, изведете <code>"Passed"</code><br>
       <strong>Втори ред:</strong> <code>else</code> изведете <code>"Failed"</code><br>
+      <button id="hintBtn">Подсказка (50 монети)</button>
     </p>
   `;
 
@@ -224,7 +239,9 @@
 
   bindLevel5();
 
-} else if (level === 6) {
+} 
+// Level 6
+else if (level === 6) {
   instructions.innerHTML = `
     <h2>Мисия</h2>
     <p>
@@ -232,6 +249,7 @@
       Всеки <code>case</code> трябва да показва ден от седмицата.<br><br>
       Пример: <code>case 1: cout << "Monday"; break;</code>
     </p>
+    <button id="hintBtn">Подсказка (50 монети)</button>
   `;
 
   playground.innerHTML = `
@@ -273,7 +291,9 @@
 
   bindLevel6();
 
-} else if (level === 7) {
+} 
+// Level 7
+else if (level === 7) {
 instructions.innerHTML = `
   <h2>Мисия</h2>
   <p>
@@ -291,6 +311,7 @@ instructions.innerHTML = `
     - Всички редове завършват с <strong>точка и запетая</strong>, освен отварящия <code>{</code> и затварящия <code>}</code>.<br>
     - Няма допълнителни интервали, символи или липсващи елементи.
   </p>
+  <button id="hintBtn">Подсказка (50 монети)</button>
 `;
 playground.innerHTML = `
   <div id="codeWrapper">
@@ -319,7 +340,9 @@ playground.innerHTML = `
 bindLevel7();
 
 
-    } else if (level === 8) {
+} 
+// Level 8 
+else if (level === 8) {
 instructions.innerHTML = `
   <h2>Мисия</h2>
   <p>
@@ -334,6 +357,7 @@ instructions.innerHTML = `
   <p>
     Програмата трябва да изброи от 0 до n-1.
   </p>
+  <button id="hintBtn">Подсказка (50 монети)</button>
 `;
 playground.innerHTML = `
   <div id="codeWrapper">
@@ -370,7 +394,9 @@ playground.innerHTML = `
 
 bindLevel8();
 
-} else if (level === 9) {
+} 
+// Level 9
+else if (level === 9) {
 instructions.innerHTML = `
   <h2>Мисия</h2>
   <p>
@@ -389,6 +415,7 @@ instructions.innerHTML = `
   <p>
     ✅ Увери се, че всички редове завършват с <code>;</code> или <code>{ }</code>, както е нужно.
   </p>
+  <button id="hintBtn">Подсказка (50 монети)</button>
 `;
 
 playground.innerHTML = `
@@ -425,7 +452,9 @@ playground.innerHTML = `
 bindLevel9();
 
 
-}else if (level === 10) {
+}
+// Level 10
+else if (level === 10) {
 
 instructions.innerHTML = `
   <h2>Мисия: Създай калкулатор</h2>
@@ -441,6 +470,7 @@ instructions.innerHTML = `
   </p>
   <p>Въведи всички редове на програмата ръчно, включително <code>#include</code> и <code>main()</code>.</p>
   <p><strong>Увери се, че всеки ред завършва с <code>;</code> или <code>}</code>, където е нужно.</strong></p>
+  <button id="hintBtn">Подсказка (50 монети)</button>
 `;
 playground.innerHTML = `
   <div id="codeWrapper">
@@ -481,7 +511,9 @@ playground.innerHTML = `
 `;
 bindLevel10();
 
-    } else {
+} 
+// If the level is not implemented yet
+else {
 
       instructions.innerHTML = `<h2>Ниво ${level}</h2><p>Това ниво все още не е налично.</p>`;
       playground.innerHTML = `<div id="levelButtons">
@@ -497,10 +529,11 @@ bindLevel10();
       bindLevel();
   
       
-    }
-  }
-  // Bind the levels that are not implemented
-  function bindLevel() {
+}
+}
+
+// Bind the levels that are not implemented
+function bindLevel() {
      const prevBtn = document.getElementById('prevLevelBtn');
 
       prevBtn.addEventListener('click', () => {
@@ -508,13 +541,18 @@ bindLevel10();
         updateUrlLevel(currentLevel);
         loadLevel(currentLevel);
       });
-  }
-  // Bind events for level 1
-  function bindLevel1() {
+}
+
+// Bind events for level 1
+function bindLevel1() {
     const input = document.getElementById('codeInput');
     const runBtn = document.getElementById('runBtn');
     const output = document.getElementById('outputWindow');
     const nextBtn = document.getElementById('nextLevelBtn');
+    const hintCost  = 50;
+    const hintBtn   = document.getElementById('hintBtn');  
+    const codeInput = document.getElementById('codeInput'); 
+    const originalPH = codeInput.getAttribute('placeholder') || '';
 
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); runBtn.click(); }
@@ -544,10 +582,58 @@ bindLevel10();
       loadLevel(currentLevel);
       window.location.href = `level.html?level=${currentLevel}`;
     });
-  }
 
-  // Bind events for level 2
-  function bindLevel2() {
+  //For The Hint Powerup
+  (function initHintPower () {
+
+  codeInput.setAttribute('placeholder', '');               // hide at start
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint1')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
+}
+
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users.
+
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                            
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint1', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    codeInput.setAttribute('placeholder', originalPH);     
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+}
+
+
+// Bind events for level 2
+function bindLevel2() {
     const input1 = document.getElementById('codeInput1');
     const input2 = document.getElementById('codeInput2');
     const runBtn = document.getElementById('runBtn');
@@ -557,6 +643,10 @@ bindLevel10();
     const nameWrapper = document.getElementById('nameInputWrapper');
     const userInput = document.getElementById('userInput');
     const sayHelloBtn = document.getElementById('sayHelloBtn');
+    const hintCost  = 50;
+    const hintBtn   = document.getElementById('hintBtn');  
+    const originalPH1 = input1.getAttribute('placeholder') || '';
+    const originalPH2 = input2.getAttribute('placeholder') || '';
 
     input1.addEventListener('keydown', e => {
       if (e.key === 'Enter') { e.preventDefault(); input2.focus(); }
@@ -609,8 +699,57 @@ bindLevel10();
       updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
+  //For The Hint Powerup
+  (function initHintPower () {
+  input1.setAttribute('placeholder', '');
+  input2.setAttribute('placeholder', '');
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint2')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
+}
+
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users.
+
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                        
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint2', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    input1.setAttribute('placeholder', originalPH1);
+    input2.setAttribute('placeholder', originalPH2);
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
   }
 
+  // Bind events for level 3
 function bindLevel3() {
   const input1 = document.getElementById('codeInput1');
   const input2 = document.getElementById('codeInput2');
@@ -623,6 +762,12 @@ function bindLevel3() {
   const inputA = document.getElementById('inputA');
   const inputB = document.getElementById('inputB');
   const sayHelloBtn = document.getElementById('sayHelloBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH1 = input1.getAttribute('placeholder') || '';
+  const originalPH2 = input2.getAttribute('placeholder') || '';
+  const originalPH3 = input3.getAttribute('placeholder') || '';
+
 
   input1.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(), input2.focus(); });
   input2.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(), input3.focus(); });
@@ -680,17 +825,71 @@ function bindLevel3() {
       updateUrlLevel(currentLevel);
       loadLevel(currentLevel);
     });
+  //For The Hint Powerup
+  (function initHintPower () {
+  input1.setAttribute('placeholder', '');
+  input2.setAttribute('placeholder', '');
+  input3.setAttribute('placeholder', '');
 
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint3')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
 
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                          
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint3', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    input1.setAttribute('placeholder', originalPH1);
+    input2.setAttribute('placeholder', originalPH2);
+    input3.setAttribute('placeholder', originalPH3);
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+  
+
+// Bind events for level 4
 function bindLevel4() {
-  const input1 = document.getElementById('codeInput1'); // if line
-  const input2 = document.getElementById('codeInput2'); // cout line
+  const input1 = document.getElementById('codeInput1');
+  const input2 = document.getElementById('codeInput2'); 
   const runBtn = document.getElementById('runBtn');
   const output = document.getElementById('outputWindow');
   const nextBtn = document.getElementById('nextLevelBtn');
   const prevBtn = document.getElementById('prevLevelBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH1 = input1.getAttribute('placeholder') || '';
+  const originalPH2 = input2.getAttribute('placeholder') || '';
 
   input1.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
@@ -710,9 +909,9 @@ function bindLevel4() {
     const line1 = input1.value.trim();
     const line2 = input2.value.trim();
 
-    // Regex to match: if (score >= 50) { 
+   
     const ifPattern = /^\s*if\s*\(\s*score\s*>=\s*50\s*\)\s*$/;
-    // Match: cout << "Passed";
+
     const coutPattern = /^\s*cout\s*<<\s*"Passed"\s*;\s*$/;
 
     output.innerHTML = '';
@@ -739,15 +938,70 @@ function bindLevel4() {
     updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
+   //For The Hint Powerup
+  (function initHintPower () {
+  input1.setAttribute('placeholder', '');
+  input2.setAttribute('placeholder', '');
+
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint4')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
-   function bindLevel5() {
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
+ 
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                             
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint4', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    input1.setAttribute('placeholder', originalPH1);
+    input2.setAttribute('placeholder', originalPH2);
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+
+// Bind events for level 5
+function bindLevel5() {
   const input1 = document.getElementById('codeInput1');
   const input2 = document.getElementById('codeInput2');
   const runBtn = document.getElementById('runBtn');
   const output = document.getElementById('outputWindow');
   const nextBtn = document.getElementById('nextLevelBtn');
   const prevBtn = document.getElementById('prevLevelBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH1 = input1.getAttribute('placeholder') || '';
+  const originalPH2 = input2.getAttribute('placeholder') || '';
 
   input1.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
@@ -795,8 +1049,58 @@ function bindLevel4() {
     updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
+   //For The Hint Powerup
+  (function initHintPower () {
+  input1.setAttribute('placeholder', '');
+  input2.setAttribute('placeholder', '');
+
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint5')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
+
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                              
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint5', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    input1.setAttribute('placeholder', originalPH1);
+    input2.setAttribute('placeholder', originalPH2);
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+//Bind events for level 6
 function bindLevel6() {
   const inputs = [
     document.getElementById('codeInput1'),
@@ -815,6 +1119,10 @@ function bindLevel6() {
   const nameWrapper = document.getElementById('nameInputWrapper');
   const userInput = document.getElementById('userInput');
   const sayHelloBtn = document.getElementById('sayHelloBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH = inputs.map(input => input?.getAttribute('placeholder') || '');
+
 
   inputs.forEach((input, i) => {
     input.addEventListener('keydown', e => {
@@ -888,10 +1196,59 @@ function bindLevel6() {
     updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
+    //For The Hint Powerup
+  (function initHintPower () {
+  inputs.forEach(input => input.setAttribute('placeholder', ''));
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint6')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
+
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                        
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint6', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    inputs.forEach((input, i) => {
+      input.setAttribute('placeholder', originalPH[i]);
+    });
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+// Bind events for level 7
 function bindLevel7() {
-  const inputs = [
+    const inputs = [
     document.getElementById('codeInput1'),
     document.getElementById('codeInput2'),
     document.getElementById('codeInput3'),
@@ -901,6 +1258,9 @@ function bindLevel7() {
   const output = document.getElementById('outputWindow');
   const nextBtn = document.getElementById('nextLevelBtn');
   const prevBtn = document.getElementById('prevLevelBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH = inputs.map(input => input?.getAttribute('placeholder') || '');
 
   inputs.forEach((input, i) => {
     input.addEventListener('keydown', e => {
@@ -958,7 +1318,56 @@ function bindLevel7() {
     loadLevel(currentLevel);
     window.location.href = `level.html?level=${currentLevel}`;
   });
+ (function initHintPower () {
+  inputs.forEach(input => input.setAttribute('placeholder', ''));
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint7')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
+
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
+  
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                             
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint7', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    inputs.forEach((input, i) => {
+      input.setAttribute('placeholder', originalPH[i]);
+    });
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+// Bind events for level 8
 function bindLevel8() {
   const in1 = document.getElementById('codeInput1');
   const in2 = document.getElementById('codeInput2');
@@ -972,6 +1381,13 @@ function bindLevel8() {
   const sayHelloBtn = document.getElementById('sayHelloBtn');
   const nextBtn = document.getElementById('nextLevelBtn');
   const prevBtn = document.getElementById('prevLevelBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH1 = in1.getAttribute('placeholder') || '';
+  const originalPH2 = in2.getAttribute('placeholder') || '';
+  const originalPH3 = in3.getAttribute('placeholder') || '';
+  const originalPH4 = in4.getAttribute('placeholder') || '';
+  const originalPH5 = in5.getAttribute('placeholder') || '';
 
   runBtn.addEventListener('click', () => {
     const validCin = /^\s*cin\s*>>\s*n\s*;\s*$/;
@@ -1026,71 +1442,64 @@ function bindLevel8() {
     updateUrlLevel(currentLevel);
     loadLevel(currentLevel);
   });
+  //For The Hint Powerup
+(function initHintPower () {
+  in1.setAttribute('placeholder', '');
+  in2.setAttribute('placeholder', '');
+  in3.setAttribute('placeholder', '');
+  in4.setAttribute('placeholder', '');
+  in5.setAttribute('placeholder', '');
+
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint8')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
 
-
-function bindLevel8() {
-  const in1 = document.getElementById('codeInput1');
-  const in2 = document.getElementById('codeInput2');
-  const in3 = document.getElementById('codeInput3');
-  const in4 = document.getElementById('codeInput4');
-  const in5 = document.getElementById('codeInput5');
-  const runBtn = document.getElementById('runBtn');
-  const output = document.getElementById('outputWindow');
-  const userInputWrapper = document.getElementById('userInputWrapper');
-  const userInput = document.getElementById('userInput');
-  const sayHelloBtn = document.getElementById('sayHelloBtn');
-  const nextBtn = document.getElementById('nextLevelBtn');
-
-  runBtn.addEventListener('click', () => {
-    const validCin = /^\s*cin\s*>>\s*n\s*;\s*$/;
-    const validDo = /^\s*do\s*{\s*$/;
-    const validCout = /^\s*cout\s*<<\s*"Counting:\s*"\s*<<\s*i\s*<<\s*endl\s*;\s*$/;
-    const validInc = /^\s*i\+\+\s*;\s*$/;
-    const validWhile = /^\s*}\s*while\s*\(\s*i\s*<\s*n\s*\)\s*;\s*$/;
-
-    output.innerHTML = '';
-    userInputWrapper.style.display = 'none';
-
-    if (
-      validCin.test(in1.value.trim()) &&
-      validDo.test(in2.value.trim()) &&
-      validCout.test(in3.value.trim()) &&
-      validInc.test(in4.value.trim()) &&
-      validWhile.test(in5.value.trim())
-    ) {
-      output.innerHTML = '✅ Кодът изглежда правилен. Въведи число и натисни "Изпълни".';
-      userInputWrapper.style.display = 'block';
-    } else {
-      output.innerHTML = '<span class="error">⛔ Провери дали синтаксисът на do-while цикъла е коректен.</span>';
-    }
-  });
-
-  sayHelloBtn.addEventListener('click', () => {
-    const n = parseInt(userInput.value.trim());
-    if (isNaN(n)) {
-      output.innerHTML = '<span class="error">⛔ Моля въведи валидно число!</span>';
-      return;
-    }
-    let result = '';
-    let i = 0;
-    do {
-      result += `Counting: ${i}<br>`;
-      i++;
-    } while (i < n);
-    output.innerHTML = `<span class="success">${result}</span>\n\n✅ Нивото е преминато!`;
-    nextBtn.style.display = 'inline-block';
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentLevel++;
-    loadLevel(currentLevel);
-  });
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
 }
 
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                             
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
 
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint8', 1);                   
+    revealHint();
+  });
 
+  function revealHint () {
+    in1.setAttribute('placeholder', originalPH1);
+    in2.setAttribute('placeholder', originalPH2);
+    in3.setAttribute('placeholder', originalPH3);
+    in4.setAttribute('placeholder', originalPH4);
+    in5.setAttribute('placeholder', originalPH5);
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+// Bind events for level 9
 function bindLevel9() {
   const [in1, in2, in3, in4] = [
     document.getElementById('codeInput1'),
@@ -1105,6 +1514,10 @@ function bindLevel9() {
   const prevBtn = document.getElementById('prevLevelBtn');
   const userInput = document.getElementById('userInput');
   const sayHelloBtn = document.getElementById('sayHelloBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const inputs = [in1, in2, in3, in4];
+  const originalPH = inputs.map(input => input?.getAttribute('placeholder') || '');
 
   [in1, in2, in3, in4].forEach((input, i, arr) => {
     input.addEventListener('keydown', e => {
@@ -1163,9 +1576,56 @@ function bindLevel9() {
     currentLevel--;
     loadLevel(currentLevel);
   });
+(function initHintPower () {
+  inputs.forEach(input => input.setAttribute('placeholder', ''));
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint9')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
 
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                         
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint9', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    inputs.forEach((input, i) => {
+      input.setAttribute('placeholder', originalPH[i]);
+    });
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
+// Bind events for level 10
 function bindLevel10() {
   const inputs = Array.from(document.querySelectorAll('.codeInput'));
   const runBtn = document.getElementById('runBtn');
@@ -1175,6 +1635,9 @@ function bindLevel10() {
   const output = document.getElementById('outputWindow');
   const nextBtn = document.getElementById('nextLevelBtn');
   const prevBtn = document.getElementById('prevLevelBtn');
+  const hintCost  = 50;
+  const hintBtn   = document.getElementById('hintBtn');  
+  const originalPH = inputs.map(input => input?.getAttribute('placeholder') || '');
 
   inputs.forEach((input, i, arr) => {
     input.addEventListener('keydown', e => {
@@ -1257,13 +1720,63 @@ function bindLevel10() {
     currentLevel--;
     loadLevel(currentLevel);
   });
+(function initHintPower () {
+  inputs.forEach(input => input.setAttribute('placeholder', ''));
+
+
+  // If the player already bought the hint earlier
+  if (localStorage.getItem('hasHint10')) revealHint();
+  
+  function getCoins() {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    return parseInt(localStorage.getItem('guestCoins') || '0', 10);
+  } else {
+    const coins = document.querySelector('.coinBalance')?.innerText;
+    return parseInt(coins || '0', 10);
+  }
 }
 
+function setCoins(newAmount) {
+  const isGuest = localStorage.getItem('isGuest') === 'true' || new URLSearchParams(window.location.search).get('guest') === 'true';
+  if (isGuest) {
+    localStorage.setItem('guestCoins', newAmount);
+    updateCoinDisplay(newAmount);
+  } else {
+    // For real users
+
+    alert('Трябва да добавите сървърна логика за реални потребители!');
+    updateCoinDisplay(newAmount);
+  }
+}
+
+  hintBtn.addEventListener('click', () => {
+    const coins = getCoins();                              
+    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+
+    setCoins(coins - hintCost);                            
+    localStorage.setItem('hasHint10', 1);                   
+    revealHint();
+  });
+
+  function revealHint () {
+    inputs.forEach((input, i) => {
+      input.setAttribute('placeholder', originalPH[i]);
+    });
+    hintBtn.disabled = true;
+    hintBtn.innerText = 'Подсказка активирана';
+  }
+})();
+  }
+
   
-  // Initial load
-  loadLevel(currentLevel);
+// Initial load
+loadLevel(currentLevel);
+
 })();
 
+
+// Coin management
 document.addEventListener('DOMContentLoaded', () => {
   const nextBtn = document.getElementById('nextLevelBtn');
   const urlParams = new URLSearchParams(window.location.search);

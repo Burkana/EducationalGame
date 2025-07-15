@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
 
 app.get('/api/me', (req, res) => {
   if (!req.session.user) return res.status(401).json({ error: 'Not logged in' });
-  // Fetch coins from DB
+
   db.query('SELECT coins FROM Users WHERE id = ?', [req.session.user.id], (err, results) => {
     if (err || !results.length) return res.status(500).json({ error: 'DB error' });
     res.json({ ...req.session.user, coins: results[0].coins });

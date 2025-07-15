@@ -1,4 +1,4 @@
-:root {
+ :root {
       --blue-eclipse-darkest: #0F0E47;
       --blue-eclipse-dark:    #272757;
       --blue-eclipse-medium:  #505081;
@@ -110,7 +110,7 @@ main{
 }
 
 #runBtn:hover{
-  background:var(--hover-color);
+  background:var(--blue-eclipse-light);
 }
 
 #outputWindow{
@@ -149,7 +149,7 @@ main{
 }
 
 #levelButtons button:hover {
-  background: var(--hover-color);
+ background:var(--blue-eclipse-light);
 }
 
 #userInput, 
@@ -179,6 +179,26 @@ main{
   cursor: pointer;
   transition: background 0.2s;
 }
+#hintBtn{
+  margin-top:0.8rem;
+  padding:0.7rem 1.4rem;
+  background:var(--blue-eclipse-medium);
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:background .2s;
+}
+#hintBtn:hover{
+  background:var(--blue-eclipse-light);
+}
+#hintBtn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+}
+
+
 
 @media(max-width:900px){
 
