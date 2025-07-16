@@ -16,14 +16,21 @@ window.CoinManager = {
     }
   },
 
-  setCoins: function(val) {
-    if (this.isGuest) {
-      localStorage.setItem('guestCoins', val);
-      this.updateDisplay(val);
-    } else {
-      this.updateDisplay(val);
-    }
-  },
+setCoins: function (val) {
+  if (this.isGuest) {
+    localStorage.setItem('guestCoins', val);
+    this.updateDisplay(val);
+  } else {                     
+    return fetch('http://127.0.0.1:3000/api/set-coins', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newCoins: val })
+    })
+    .then(r => r.json())
+    .then(d => this.updateDisplay(d.coins));
+  }
+},
 
   updateDisplay: function(val) {
     document.querySelectorAll('.coinBalance').forEach(el => {

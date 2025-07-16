@@ -28,7 +28,6 @@
  }
 
   let currentLevel = getQueryParam('level') || 1;
- 
 
   function loadLevel(level) {
     output.innerHTML = '';
@@ -214,9 +213,7 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users, you'd need an API call to persist this on your backend.
-    // Placeholder only. Adjust if needed.
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost); 
     updateCoinDisplay(newAmount);
   }
 }
@@ -331,9 +328,7 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users, you'd need an API call to persist this on your backend.
-    // Placeholder only. Adjust if needed.
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
@@ -409,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(data => {
         if (data.coinsAdded) {
-          updateCoinDisplay(data.coins);
+          updateCoinDisplay(data.coins);        
           //alert('+50 монети! Нов баланс: ' + data.coins);
         } else {
           //alert('Вече сте получили монети за това ниво!');

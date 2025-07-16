@@ -607,16 +607,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users.
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                            
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) {  return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint1', 1);                   
@@ -724,16 +722,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users.
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                        
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint2', 1);                   
@@ -851,18 +847,17 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                          
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) {return; }
 
-    setCoins(coins - hintCost);                            
+    setCoins(coins - hintCost); 
+                               
     localStorage.setItem('hasHint3', 1);                   
     revealHint();
   });
@@ -964,16 +959,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
- 
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                             
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint4', 1);                   
@@ -1075,16 +1068,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                              
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint5', 1);                   
@@ -1220,16 +1211,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                        
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint6', 1);                   
@@ -1341,16 +1330,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-  
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                             
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint7', 1);                   
@@ -1471,16 +1458,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                             
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint8', 1);                   
@@ -1599,16 +1584,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                         
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint9', 1);                   
@@ -1743,16 +1726,14 @@ function setCoins(newAmount) {
     localStorage.setItem('guestCoins', newAmount);
     updateCoinDisplay(newAmount);
   } else {
-    // For real users
-
-    alert('Трябва да добавите сървърна логика за реални потребители!');
+    CoinManager.addCoins(-hintCost);
     updateCoinDisplay(newAmount);
   }
 }
 
   hintBtn.addEventListener('click', () => {
     const coins = getCoins();                              
-    if (coins < hintCost) { alert('Нямате достатъчно монети!'); return; }
+    if (coins < hintCost) { return; }
 
     setCoins(coins - hintCost);                            
     localStorage.setItem('hasHint10', 1);                   

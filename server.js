@@ -105,4 +105,48 @@ app.post('/api/complete-level', (req, res) => {
   });
 });
 
+/* ============================================================
+   POST /api/add-coins      – добавя (или вади) сума от баланса
+   Expects:  { amount: +50 }  или  { amount: -50 }
+   Returns:  { coins: <newBalance> }
+   ============================================================*/
+app.post('/api/add-coins', (req, res) => {
+  const userId = req.session.user?.id;
+  const amount = parseInt(req.body.amount, 10);
+  if (!userId || !Number.isFinite(amount)) {
+    return res.status(400).json({ error: 'Invalid data' });
+  }
+
+  const q = `
+    UPDATE Users
+    SET coins = GREATEST(coins + ?, 0)
+    WHERE id  = ?;
+  `;
+  db.query(q, [amount, userId], err => {
+    if (err) return res.status(500).json({ error: 'DB error' });
+    db.query('SELECT coins FROM Users WHERE id = ?', [userId], (err, rows) => {
+      if (err) return res.status(500).json({ error: 'DB error' });
+      res.json({ coins: rows[0].coins });
+    });
+  });
+});
+
+/* ============================================================
+   POST /api/set-coins      – записва точна стойност
+   Expects:  { newCoins: 320 }
+   Returns:  { coins: <newBalance> }
+   ============================================================*/
+app.post('/api/set-coins', (req, res) => {
+  const userId  = req.session.user?.id;
+  const newAmt  = parseInt(req.body.newCoins, 10);
+  if (!userId || !Number.isFinite(newAmt) || newAmt < 0) {
+    return res.status(400).json({ error: 'Invalid data' });
+  }
+
+  db.query('UPDATE Users SET coins = ? WHERE id = ?', [newAmt, userId], err => {
+    if (err) return res.status(500).json({ error: 'DB error' });
+    res.json({ coins: newAmt });
+  });
+});
+
 app.listen(3000, () => console.log('Server running at http://127.0.0.1:3000'));
